@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+    background-color: #2d3250; /* Cor de fundo do corpo */
+}
+
+.container {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    background: #424769; /* Cor fundo contêiner */
+    box-shadow: 5px 0px 5px 5px #2d3250; /* Sombra contêiner */
+    border-radius: 20px; /* Borda arredondada contêiner */
+    padding: 2em; /* Espaçamento interno contêiner */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+.container h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.3em;
+    color: #f6b17a; /* Cor do título */
+    border-bottom: 1px solid #2d3250; /* Cor borda inferior título */
+    margin-bottom: 20px; /* Espaçamento abaixo título */
+    padding-bottom: 10px;
+    text-align: center; /* Centraliza texto título */
+}
+
+.form_grupo {
+    width: 100%; /* Garante que o grupo ocupe a largura total do contêiner */
+    max-width: 500px; /* Define um tamanho máximo para o grupo */
+    margin-bottom: 20px; /* Espaçamento entre os campos */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza conteúdo dentro do grupo */
+}
+
+.form_grupo .form_label {
+    width: 100%;
+    text-align: left; /* Alinha o texto do label à esquerda */
+    font-weight: bold;
+    color: #f6b17a; /* Cor do label */
+}
+
+.form_input {
+    width: 100%; /* Garante que o input ocupe a largura total do grupo */
+    padding: 10px;
+    border-radius: 10px; /* Borda arredondada para os campos de entrada */
+    border: 1px solid #ccc;
+    margin-bottom: 10px; /* Espaçamento entre o input e o próximo elemento */
+    background-color: #2d3250; /* Cor de fundo do input */
+    color: #f6b17a; /* Cor do texto do input */
+}
+
+.form_submit {
+    width: 100%; /* Garante que o botão ocupe a largura total do grupo */
+    padding: 15px; /* Aumentado para melhorar a usabilidade */
+    border-radius: 10px; /* Borda arredondada para o botão */
+    border: none;
+    background-color: #f6b17a; /* Cor de fundo do botão */
+    color: #2d3250; /* Cor do texto do botão */
+    font-size: 1.1em; /* Tamanho da fonte do botão */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Espaço acima do botão */
+}
+
+.form_submit:hover {
+    background-color: #e69956; /* Cor do botão ao passar o mouse */
+}

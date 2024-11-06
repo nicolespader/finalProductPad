@@ -1,0 +1,94 @@
+/* Estilização global */
+body {
+    background-color: #2d3250;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container central */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Card com borda e sombra */
+.card {
+    background-color: #424769;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    padding: 70px 70px;
+    max-width: 400px;  /* Ajustado para ser mais compacto */
+    text-align: center;
+    color: white;
+}
+
+/* Texto estilizado no topo */
+.tagline {
+    font-family: 'Dancing Script', cursive; /* Fonte estilizada */
+    font-size: 40px;
+    color: #f6b17a;
+    margin-bottom: 20px;
+}
+
+/* Logo */
+.card img.logo {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+/* Título principal */
+.card h1 {
+    font-size: 32px;
+    margin: 0;
+    font-weight: 600;
+    color: #f6b17a;
+}
+
+/* Subtítulo */
+.card p {
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: 400;
+    color: #b6b7d4;
+}
+
+/* Botões */
+.button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #f6b17a;
+    color: #2d3250;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: #e69956;
+    transform: translateY(-3px);
+}
+
+/* Botão secundário menor */
+.secondary-button {
+    background-color: transparent;
+    color: #f6b17a;
+    border: 2px solid #f6b17a;
+    padding: 8px 25px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.secondary-button:hover {
+    background-color: #f6b17a;
+    color: #2d3250;
+}
+

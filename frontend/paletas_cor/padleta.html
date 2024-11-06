@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Paleta de Cores</title>
+    <link rel="stylesheet" href="padleta.css">
+</head>
+<body>
+    <div class="navbar">
+        <button class="back-button" onclick="location.href='../tela_principal/principal.html'">Voltar</button>
+        <h1>Sorteio de Paleta de Cores</h1>
+        <button class="quiz-button" onclick="location.href='../index.html'">Quiz</button>
+    </div>
+
+    <div class="container">
+        <h1>Sorteio de Paleta de Cores</h1>
+        <form id="colorForm">
+            <label for="targetAudience">Qual seu público-alvo?</label>
+            <select id="targetAudience" name="targetAudience" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="adolescentes">Adolescentes</option>
+                <option value="adultos">Adultos</option>
+                <option value="crianças">Crianças</option>
+                <option value="idosos">Idosos</option>
+            </select>
+
+            <label for="product">Com que produto você trabalha?</label>
+            <select id="product" name="product" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="roupas">Roupas</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="alimentos">Alimentos</option>
+                <option value="cosmeticos">Cosméticos</option>
+            </select>
+
+            <label for="marketArea">Qual é sua área no mercado?</label>
+            <select id="marketArea" name="marketArea" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="varejo">Varejo</option>
+                <option value="serviços">Serviços</option>
+                <option value="educação">Educação</option>
+                <option value="saúde">Saúde</option>
+            </select>
+
+            <button type="button" id="drawButton">Sortear</button>
+        </form>
+        <div id="colorPalette">
+            <h2>Paleta de Cores Sorteada</h2>
+            <div id="paletteDisplay"></div>
+        </div>
+    </div>
+    <script src="padleta.js"></script>
+</body>
+</html>

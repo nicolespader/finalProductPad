@@ -1,0 +1,75 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    background-color: #2d3250;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #424769;
+    color: white;
+}
+
+.navbar .left, .navbar .right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .center {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.navbar button {
+    background-color: #2d3250;
+    color: #f6b17a;
+    border: none;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar button:hover {
+    background-color: #f6b17a;
+    color: #2d3250;
+}
+
+.navbar input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    background-color: #2d3250;
+    color: #f6b17a;
+}
+
+.container {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.button {
+    display: block;
+    width: 700px;
+    margin: 40px auto;
+    padding: 45px;
+    font-size: 26px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #f6b17a;
+    color: #2d3250;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+    background-color: #e69956;
+}
