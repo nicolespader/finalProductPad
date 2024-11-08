@@ -121,25 +121,25 @@ async function quiz(request, response) {
         // Supondo que 'results' contenha as perguntas e respostas do banco de dados
         if (results.length > 0) {
             // Inicia a construção da string HTML para o quiz
-            let html = '<div id="quiz">';
+            let html = '<div id="quiz" >';
 
             // Itera sobre cada linha de resultado obtida na consulta (array 'results')
             results.forEach(row => {
                 // Para cada pergunta, cria uma seção de pergunta com opções de resposta
-                html += `<div class="question">`;
-                html += `<p>${row.pergunta}</p>`; // Exibe a pergunta
+                html += `<div class = "questoes-box">`;
+                html += `<p class="question-text">${row.pergunta}</p>`; // Exibe a pergunta
 
                 // Adiciona as opções de resposta como botões ou rádio inputs
-                html += `<label><input type="radio" name="question${row.id}" value="1"> ${row.opcao1}</label><br>`;
-                html += `<label><input type="radio" name="question${row.id}" value="2"> ${row.opcao2}</label><br>`;
-                html += `<label><input type="radio" name="question${row.id}" value="3"> ${row.opcao3}</label><br>`;
-                html += `<label><input type="radio" name="question${row.id}" value="4"> ${row.opcao4}</label><br>`;
+                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="1"> ${row.opcao1}</label><br>`;
+                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="2"> ${row.opcao2}</label><br>`;
+                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="3"> ${row.opcao3}</label><br>`;
+                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="4"> ${row.opcao4}</label><br>`;
 
                 html += `</div>`;
             });
 
             // Finaliza o HTML com um botão de envio para checar as respostas
-            html += `<button onclick="submitQuiz()">Enviar</button>`;
+            html += `<button class="submit-button" onclick="submitQuiz()">Enviar</button>`;
             html += `</div>`;
 
             // Envia a string HTML do quiz como resposta
@@ -151,7 +151,6 @@ async function quiz(request, response) {
                 message: "Nenhuma pergunta encontrada no banco de dados"
             });
         }
-
     });
 }
 

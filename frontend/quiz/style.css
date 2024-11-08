@@ -40,6 +40,7 @@ body {
     width: 80vw;
     margin: 15px auto;
     border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .opcao-wrapper {
@@ -50,23 +51,41 @@ body {
     margin: 0 auto;
 }
 
-.opcao-left,
-.opcao-right {
-    width: 50%;
+.opcao-left {
+    width: 100%;
 }
 
 .opcao-box {
-    width: 40vw;
-    height: 70px;
-    margin: 20px;
+    display: flex;
+    align-items: center;
     background: #f6b17a;
     border-radius: 50px;
-    position: relative;
-    color: #2d3250;
+    padding: 10px;
+    margin: 10px auto; /* Ajustado para centralizar melhor */
+    transition: background 0.3s; /* Suaviza a mudança de cor */
+    cursor: pointer; /* Muda o cursor para indicar interatividade */
+}
+
+.opcao-box:hover {
+    background: #f39c12; /* Muda a cor ao passar o mouse */
+}
+
+.submit-button {
+    background-color: #424769;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #333a5e; /* Muda a cor do botão ao passar o mouse */
 }
 
 a {
     color: white;
     text-decoration: none;
 }
-
