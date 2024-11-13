@@ -1,22 +1,22 @@
 body {
-    background-color: rgb(42, 225, 238);
+    background-color:  #2d3250;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
 }
 
 .header {
-    background-color: rgb(48, 47, 53);
+    background-color: #424769;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: #f6b17a;
 }
 
 .back-button {
-    background-color: rgb(42, 225, 238);
-    color: black;
+    background-color: #2d3250;
+    color: #f6b17a;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -26,7 +26,7 @@ body {
 }
 
 .back-button:hover {
-    background-color: #36b8d1;
+    background-color: #f6b17a;
 }
 
 .header h1 {
@@ -35,8 +35,8 @@ body {
 }
 
 .content {
-    background-color: rgb(48, 47, 53);
-    color: white;
+    background-color: #f6b17a;
+    color: #2d3250;
     margin: 40px auto;
     padding: 20px;
     max-width: 600px;
@@ -53,8 +53,8 @@ body {
 
 
 .colors-button {
-    background-color: rgb(42, 225, 238);
-    color: black;
+    background-color: #f6b17a;
+    color: #f6b17a;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -69,6 +69,6 @@ body {
 }
 
 .colors-button:hover {
-    background-color: #36b8d1;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
