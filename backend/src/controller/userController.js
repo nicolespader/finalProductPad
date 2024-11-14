@@ -159,6 +159,7 @@ async function quiz(request, response) {
 // fazer um return para a variavel 
 
 module.exports = {
+    getPerguntras,
     storeUser,
     loginUser,
     saveHighScore,

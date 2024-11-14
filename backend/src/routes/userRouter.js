@@ -151,4 +151,7 @@ router.post('/save_highscore', saveHighScore);
 
 router.post('/quiz', quiz);
 
+
+router.get("/getPerguntras", getPerguntras);
+
 module.exports = router;
