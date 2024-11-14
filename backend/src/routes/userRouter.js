@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { storeUser, loginUser, saveHighScore, quiz } = require('../controller/userController');
+const { storeUser, loginUser, saveHighScore, quiz, getPerguntras } = require('../controller/userController');
 
 /**
  * @swagger
@@ -150,7 +150,6 @@ router.post('/save_highscore', saveHighScore);
  */
 
 router.post('/quiz', quiz);
-
 
 router.get("/getPerguntras", getPerguntras);
 

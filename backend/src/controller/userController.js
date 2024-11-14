@@ -157,6 +157,38 @@ async function quiz(request, response) {
 
 // fazer uma função que faça um select pegando o nome do jogo a partir do id_jogo
 // fazer um return para a variavel 
+async function getPerguntras(request, response) {
+    const query = `SELECT * FROM perguntas`;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return response.status(500).json({
+                success: false,
+                message: "Erro ao buscar perguntas",
+                error: err
+            });
+        }
+        
+        if (results.length > 0) {
+            let html = '<div id="quiz">';
+            results.forEach(row => {
+                html += `<div class="questoes-box">
+                            <p class="question-text">${row.pergunta}</p>
+                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="1"> ${row.opcao1}</label><br>
+                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="2"> ${row.opcao2}</label><br>
+                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="3"> ${row.opcao3}</label><br>
+                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="4"> ${row.opcao4}</label><br>
+                          </div>`;
+            });
+            html += `<button class="submit-button" onclick="submitQuiz()">Enviar</button></div>`;
+            return response.send(html);
+        } else {
+            return response.status(404).json({
+                success: false,
+                message: "Nenhuma pergunta encontrada"
+            });
+        }
+    });
+}
 
 module.exports = {
     getPerguntras,
@@ -164,4 +196,4 @@ module.exports = {
     loginUser,
     saveHighScore,
     quiz
-}
+};
