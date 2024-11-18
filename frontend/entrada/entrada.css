@@ -1,0 +1,122 @@
+/* Estilização global */
+body {
+    background-color: #2d3250;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container central */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Card com borda e sombra */
+.card {
+    background-color: #424769;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    padding: 60px 50px; /* Mais compacto */
+    max-width: 400px;
+    text-align: center;
+    color: white;
+}
+
+/* Texto estilizado no topo */
+.tagline {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px; /* Reduzido para melhor proporção */
+    color: #f6b17a;
+    margin-bottom: 15px;
+}
+
+/* Logo */
+.card img.logo {
+    width: 70px; /* Reduzido para melhor proporção */
+    margin-bottom: 20px;
+}
+
+/* Título principal */
+.card h1 {
+    font-size: 30px;
+    margin: 0;
+    font-weight: 600;
+    color: #f6b17a;
+}
+
+/* Subtítulo */
+.card p {
+    font-size: 16px; /* Diminuído para mais harmonia */
+    margin-top: 10px;
+    font-weight: 400;
+    color: #b6b7d4;
+}
+
+/* Botões */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Alinha os botões verticalmente */
+    align-items: center; /* Centraliza os botões */
+    gap: 15px; /* Espaço entre os botões */
+}
+
+/* Estilo dos botões */
+.button {
+    width: 80%; /* Largura ajustável para uniformidade */
+    max-width: 300px; /* Limite de largura */
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #f6b17a, #e69956);
+    color: #2d3250;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px; /* Botão arredondado */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.button:hover {
+    background: linear-gradient(90deg, #e69956, #f6b17a); /* Inverte as cores no hover */
+    transform: scale(1.05); /* Leve aumento */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animação de clique */
+.button:active {
+    transform: scale(0.95); /* Leve redução no clique */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Melhorias para dispositivos móveis */
+@media (max-width: 600px) {
+    .card {
+        padding: 40px 30px;
+    }
+
+    .tagline {
+        font-size: 28px;
+    }
+
+    .card h1 {
+        font-size: 24px;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+
+    .button, .secondary-button {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}

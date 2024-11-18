@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Login</h1>
+        <form class="form" action="#" method="post">
+            <div class="form_grupo">
+                <label for="e-mail" class="form_label">Email</label>
+                <input type="email" name="email" class="form_input" id="email" placeholder="seuemail@email.com" required>
+            </div>
+            
+            <div class="form_grupo">
+                <label for="senha" class="form_label">Senha</label>
+                <input type="password" name="senha" class="form_input" id="senha" placeholder="Senha" required>
+            </div>
+            
+            <button type="button" class="form_submit" id="login">Login</button>
+        </form>
+        <a href="./cadastro.html">Novo usuario? Cadastre aqui!</a>
+    </div>
+
+    <script type="module" src="./loginScript.js"></script>
+</body>
+
+</html>

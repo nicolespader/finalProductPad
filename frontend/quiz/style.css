@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2d3250;
+    color: white;
+}
+
+.inicio {
+    height: 100vh;
+    position: relative;
+    text-align: center;
+}
+
+.titulo {
+    background: #424769;
+    padding: 15px;
+    box-shadow: 0 0 10px #000;
+}
+
+.quiz_titulo {
+    font-size: 4rem;
+    color: #f6b17a;
+}
+
+.pontos {
+    padding: 15px 0;
+    font-size: 1rem;
+    color: #b6b7d4;
+}
+
+.questoes-box {
+    background: white;
+    padding: 30px;
+    color: #2d3250;
+    font-size: 1.8rem;
+    width: 80vw;
+    margin: 15px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.opcao-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.opcao-left {
+    width: 100%;
+}
+
+.opcao-box {
+    display: flex;
+    align-items: center;
+    background: #f6b17a;
+    border-radius: 50px;
+    padding: 10px;
+    margin: 10px auto; /* Ajustado para centralizar melhor */
+    transition: background 0.3s; /* Suaviza a mudança de cor */
+    cursor: pointer; /* Muda o cursor para indicar interatividade */
+}
+
+.opcao-box:hover {
+    background: #f39c12; /* Muda a cor ao passar o mouse */
+}
+
+.submit-button {
+    background-color: #424769;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #333a5e; /* Muda a cor do botão ao passar o mouse */
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}

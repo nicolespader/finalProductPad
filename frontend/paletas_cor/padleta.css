@@ -1,0 +1,118 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #2d3250;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #424769;
+    color: #f6b17a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.navbar h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #f6b17a;
+}
+
+.back-button,
+.quiz-button {
+    background-color: #f6b17a;
+    color: #2d3250;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover,
+.quiz-button:hover {
+    background-color: #e69956;
+}
+
+.container {
+    background-color: #424769;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    width: 700px;
+    height: 600px;
+    text-align: center;
+    color: white;
+    margin-top: 80px; /* Espaço para a navbar fixa */
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #f6b17a;
+    font-weight: 700;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #b6b7d4;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #2d3250;
+    color: #f6b17a;
+}
+
+button {
+    background-color: #f6b17a;
+    color: #2d3250;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #e69956;
+    transform: translateY(-3px);
+}
+
+#colorPalette {
+    margin-top: 25px;
+}
+
+#paletteDisplay {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#paletteDisplay div {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
