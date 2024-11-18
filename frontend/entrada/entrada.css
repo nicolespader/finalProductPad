@@ -23,29 +23,29 @@ body {
     background-color: #424769;
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    padding: 70px 70px;
-    max-width: 400px;  /* Ajustado para ser mais compacto */
+    padding: 60px 50px; /* Mais compacto */
+    max-width: 400px;
     text-align: center;
     color: white;
 }
 
 /* Texto estilizado no topo */
 .tagline {
-    font-family: 'Dancing Script', cursive; /* Fonte estilizada */
-    font-size: 40px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px; /* Reduzido para melhor proporção */
     color: #f6b17a;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 /* Logo */
 .card img.logo {
-    width: 80px;
-    margin-bottom: 15px;
+    width: 70px; /* Reduzido para melhor proporção */
+    margin-bottom: 20px;
 }
 
 /* Título principal */
 .card h1 {
-    font-size: 32px;
+    font-size: 30px;
     margin: 0;
     font-weight: 600;
     color: #f6b17a;
@@ -53,42 +53,70 @@ body {
 
 /* Subtítulo */
 .card p {
-    font-size: 18px;
+    font-size: 16px; /* Diminuído para mais harmonia */
     margin-top: 10px;
     font-weight: 400;
     color: #b6b7d4;
 }
 
 /* Botões */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Alinha os botões verticalmente */
+    align-items: center; /* Centraliza os botões */
+    gap: 15px; /* Espaço entre os botões */
+}
+
+/* Estilo dos botões */
 .button {
-    margin-top: 20px;
-    padding: 10px 30px;
+    width: 80%; /* Largura ajustável para uniformidade */
+    max-width: 300px; /* Limite de largura */
+    padding: 12px 30px;
     font-size: 16px;
-    background-color: #f6b17a;
+    font-weight: bold;
+    background: linear-gradient(90deg, #f6b17a, #e69956);
     color: #2d3250;
     text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    border-radius: 50px; /* Botão arredondado */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .button:hover {
-    background-color: #e69956;
-    transform: translateY(-3px);
+    background: linear-gradient(90deg, #e69956, #f6b17a); /* Inverte as cores no hover */
+    transform: scale(1.05); /* Leve aumento */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Botão secundário menor */
-.secondary-button {
-    background-color: transparent;
-    color: #f6b17a;
-    border: 2px solid #f6b17a;
-    padding: 8px 25px;
-    font-size: 14px;
-    margin-top: 10px;
+/* Animação de clique */
+.button:active {
+    transform: scale(0.95); /* Leve redução no clique */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.secondary-button:hover {
-    background-color: #f6b17a;
-    color: #2d3250;
-}
+/* Melhorias para dispositivos móveis */
+@media (max-width: 600px) {
+    .card {
+        padding: 40px 30px;
+    }
 
+    .tagline {
+        font-size: 28px;
+    }
+
+    .card h1 {
+        font-size: 24px;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+
+    .button, .secondary-button {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}

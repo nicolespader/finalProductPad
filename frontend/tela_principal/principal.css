@@ -18,6 +18,10 @@ body {
     align-items: center;
 }
 
+.nav-link{
+    color: #f6b17a;
+}
+
 .navbar .center {
     display: flex;
     justify-content: center;

@@ -1,0 +1,65 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    background-color: #2d3250;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #424769;
+}
+
+.navbar .left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .center {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.navbar a {
+    color: #f6b17a;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Altura da navbar */
+}
+
+.profile-card {
+    background-color: #424769;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+}
+
+.profile-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #f6b17a;
+}
+
+.profile-email {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #dcdcdc;
+}
+
+.profile-info {
+    font-size: 18px;
+    color: #dcdcdc;
+}

@@ -67,133 +67,57 @@ async function loginUser(request, response) {
     });
 }
 
-// Função para salvar o score do usuário
-async function saveHighScore(request, response) {
-    const { id_jogo, id_usuario, pontuacao } = request.body;
-    console.log(request.body)
-    // Valida se todos os parâmetros necessários foram enviados
-    if (!id_jogo || !id_usuario || pontuacao === undefined) {
+async function getUserData(request, response) {
+    const { id_usuario } = request.body;
+
+    console.log("Rota /getUserData chamada com ID:", id_usuario);
+
+    if (!id_usuario) {
+        console.error("ID do usuário ausente");
         return response.status(400).json({
             success: false,
-            message: "Parâmetros faltando (id_jogo, id_usuario, pontuacao)"
+            message: "ID do usuário é obrigatório"
         });
     }
 
-    // Query para inserir o histórico de pontuação
-    const query = "INSERT INTO historico(id_jogo, id_usuario, pontuacao) VALUES(?, ?, ?);";
-
-    // Executa a query com os parâmetros fornecidos
-    connection.query(query, [id_jogo, id_usuario, pontuacao], (err, results) => {
-        if (err) {
-            return response.status(500).json({
-                success: false,
-                message: "Erro ao salvar o score no banco de dados",
-                error: err
-            });
-        }
-
-        // Resposta de sucesso
-        response.status(200).json({
-            success: true,
-            message: "Score salvo com sucesso",
-            data: results
-        });
-    });
-}
-
-
-async function quiz(request, response) {
-    const { id_usuario } = request.body;
-    console.log(id_usuario);
-
-    const query = `
-    SELECT * FROM perguntas`;
+    const query = "SELECT nome, email, highScore FROM usuario WHERE id = ?";
 
     connection.query(query, [id_usuario], (err, results) => {
         if (err) {
+            console.error("Erro ao buscar dados do usuário:", err);
             return response.status(500).json({
                 success: false,
-                message: "Erro no servidor",
+                message: "Erro ao buscar dados do usuário",
                 error: err
             });
         }
 
-        // Supondo que 'results' contenha as perguntas e respostas do banco de dados
+        console.log("Resultados da consulta ao banco de dados:", results);
+
         if (results.length > 0) {
-            // Inicia a construção da string HTML para o quiz
-            let html = '<div id="quiz" >';
+            const user = results[0];
+            console.log("Usuário encontrado:", user);
 
-            // Itera sobre cada linha de resultado obtida na consulta (array 'results')
-            results.forEach(row => {
-                // Para cada pergunta, cria uma seção de pergunta com opções de resposta
-                html += `<div class = "questoes-box">`;
-                html += `<p class="question-text">${row.pergunta}</p>`; // Exibe a pergunta
-
-                // Adiciona as opções de resposta como botões ou rádio inputs
-                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="1"> ${row.opcao1}</label><br>`;
-                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="2"> ${row.opcao2}</label><br>`;
-                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="3"> ${row.opcao3}</label><br>`;
-                html += `<label class="opcao-box"><input type="radio" name="question${row.id}" value="4"> ${row.opcao4}</label><br>`;
-
-                html += `</div>`;
+            response.status(200).json({
+                success: true,
+                user: {
+                    nome: user.nome,
+                    email: user.email,
+                    highScore: user.highScore || 0
+                }
             });
-
-            // Finaliza o HTML com um botão de envio para checar as respostas
-            html += `<button class="submit-button" onclick="submitQuiz()">Enviar</button>`;
-            html += `</div>`;
-
-            // Envia a string HTML do quiz como resposta
-            return response.send(html);
         } else {
-            // Retorna uma mensagem de erro caso não encontre perguntas
-            return response.status(404).json({
+            console.warn("Usuário não encontrado para o ID:", id_usuario);
+            response.status(404).json({
                 success: false,
-                message: "Nenhuma pergunta encontrada no banco de dados"
-            });
-        }
-    });
-}
-
-
-// fazer uma função que faça um select pegando o nome do jogo a partir do id_jogo
-// fazer um return para a variavel 
-async function getPerguntras(request, response) {
-    const query = `SELECT * FROM perguntas`;
-    connection.query(query, (err, results) => {
-        if (err) {
-            return response.status(500).json({
-                success: false,
-                message: "Erro ao buscar perguntas",
-                error: err
-            });
-        }
-        
-        if (results.length > 0) {
-            let html = '<div id="quiz">';
-            results.forEach(row => {
-                html += `<div class="questoes-box">
-                            <p class="question-text">${row.pergunta}</p>
-                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="1"> ${row.opcao1}</label><br>
-                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="2"> ${row.opcao2}</label><br>
-                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="3"> ${row.opcao3}</label><br>
-                            <label class="opcao-box"><input type="radio" name="question${row.id}" value="4"> ${row.opcao4}</label><br>
-                          </div>`;
-            });
-            html += `<button class="submit-button" onclick="submitQuiz()">Enviar</button></div>`;
-            return response.send(html);
-        } else {
-            return response.status(404).json({
-                success: false,
-                message: "Nenhuma pergunta encontrada"
+                message: "Usuário não encontrado"
             });
         }
     });
 }
 
 module.exports = {
-    getPerguntras,
     storeUser,
     loginUser,
-    saveHighScore,
-    quiz
+    getUserData
 };

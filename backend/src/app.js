@@ -34,7 +34,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Rotas da aplicação
-const userRouter = require("./routes/userRouter");
-app.use('/api', userRouter);
+const userRouter = require('./routes/userRouter');
+app.use('/backend', userRouter);
 
 module.exports = app;

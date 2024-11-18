@@ -72,3 +72,7 @@ body {
 .form_submit:hover {
     background-color: #e69956; /* Cor do botão ao passar o mouse */
 }
+
+a{
+    color: #f6b17a;
+}

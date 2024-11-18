@@ -1,27 +1,50 @@
-import { checkUser } from '../DB/src/script.js'
+document.addEventListener('DOMContentLoaded', async () => {
+    const apiUrl = 'http://localhost:3006/backend/getUserData';
 
-// chama a função que somente retorna se o usuario esta logado ou não e ENTÃO, 
-// se o retorno(result) for "log", ou seja, logado, salva as informações que pegamos dentro da função userCheck, 
-// se não estiver logado, vai direcionar para a pagina de login 
+    async function getUserData() {
+        const userId = localStorage.getItem('id'); // Ajustado para 'id', conforme o localStorage mostrado
+        console.log("Verificando localStorage. ID:", userId);
 
-await checkUser().then((result) => {
-    // Verifica se o usuário está logado através da propriedade 'status' retornada pela função
-    if (result.status === 'log') {
-        // Se o usuário estiver logado, salva os dados de autenticação no objeto 'userData'
-        const userData = result.userAuthData;
-        
-        // Exibe no console os dados de autenticação do usuário
-        console.log('Usuário logado com dados de autenticação:', result.userAuthData);
+        if (!userId) {
+            console.error("Usuário não está logado. Redirecionando para login.");
+            window.location.href = "../cadastro_login/login.html";
+            return;
+        }
 
-        // Exibe no console os dados adicionais do usuário vindos do banco de dados
-        console.log('Dados do usuário do banco de dados:', result.userData);
-    } else {
-        // Se o usuário não estiver logado, exibe mensagem no console e redireciona para a página de login
-        console.log('Usuário não está logado, redirecionando para login');
-        window.location.href = "../cadastro_login/login.html";
+        console.log("Buscando dados para o ID do usuário:", userId);
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id_usuario: parseInt(userId) })
+            });
+
+            console.log("Resposta do servidor:", response);
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log("Dados recebidos do servidor:", result);
+
+                if (result.success) {
+                    updateProfile(result.user.nome, result.user.email, result.user.highScore);
+                } else {
+                    console.warn("Erro ao buscar dados do usuário:", result.message);
+                }
+            } else {
+                console.error("Erro na resposta do servidor. Status:", response.status);
+            }
+        } catch (error) {
+            console.error("Erro na requisição ao servidor:", error);
+        }
     }
-}).catch((error) => {
-    // Exibe no console uma mensagem de erro caso a verificação de login falhe
-    console.error('Erro ao verificar usuário:', error);
-});
 
+    function updateProfile(nome, email, highScore) {
+        console.log("Atualizando perfil com dados:", { nome, email, highScore });
+        document.querySelector('.profile-name').innerText = nome || "Usuário";
+        document.querySelector('.profile-email').innerText = email || "Email não encontrado";
+        document.querySelector('#high-score').innerText = highScore || 0;
+    }
+
+    getUserData();
+});

@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { storeUser, loginUser, saveHighScore, quiz, getPerguntras } = require('../controller/userController');
+const { storeUser, loginUser, getUserData } = require('../controller/userController');
 
 /**
  * @swagger
- * /api/register:
+ * /register:
  *   post:
  *     summary: Cadastra um novo usuário
- *     description: Registra um novo usuário no sistema com email e senha.
+ *     tags: [Usuário]
  *     requestBody:
  *       required: true
  *       content:
@@ -14,34 +14,31 @@ const { storeUser, loginUser, saveHighScore, quiz, getPerguntras } = require('..
  *           schema:
  *             type: object
  *             properties:
+ *               nome:
+ *                 type: string
+ *                 example: "João Silva"
  *               email:
  *                 type: string
- *                 example: "user@example.com"
+ *                 example: "joao@example.com"
  *               senha:
  *                 type: string
- *                 example: "password123"
+ *                 example: "senha123"
  *     responses:
- *       200:
- *         description: Usuário cadastrado com sucesso.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                 message:
- *                   type: string
+ *       201:
+ *         description: Usuário cadastrado com sucesso
+ *       400:
+ *         description: Erro nos dados fornecidos
  */
+
 
 router.post('/register', storeUser);
 
 /**
  * @swagger
- * /api/login:
+ * /login:
  *   post:
  *     summary: Login de um usuário
- *     description: Realiza login do usuário com email e senha.
+ *     tags: [Usuário]
  *     requestBody:
  *       required: true
  *       content:
@@ -51,34 +48,47 @@ router.post('/register', storeUser);
  *             properties:
  *               email:
  *                 type: string
- *                 example: "user@example.com"
+ *                 example: "joao@example.com"
  *               senha:
  *                 type: string
- *                 example: "password123"
+ *                 example: "senha123"
  *     responses:
  *       200:
- *         description: Login realizado com sucesso.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                 message:
- *                   type: string
- *                 user:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
- *                       example: 1
- *                     nome:
- *                       type: string
- *                       example: "João"
+ *         description: Login realizado com sucesso
+ *       401:
+ *         description: Credenciais inválidas
  */
 
+
 router.post('/login', loginUser); 
+
+/**
+ * @swagger
+ * /getUserData:
+ *   post:
+ *     summary: Busca dados do usuário
+ *     tags: [Usuário]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id_usuario:
+ *                 type: integer
+ *                 example: 1
+ *     responses:
+ *       200:
+ *         description: Dados do usuário retornados com sucesso
+ *       404:
+ *         description: Usuário não encontrado
+ */
+
+
+router.post('/getUserData', getUserData);
+
+const { saveHighScore, getQuizData, calculateScore, updateHighScore} = require('../controller/quizController');
 
 /**
  * @swagger
@@ -117,10 +127,26 @@ router.post('/save_highscore', saveHighScore);
 
 /**
  * @swagger
- * /api/highScore:
+ * /get/quiz:
  *   post:
- *     summary: Busca a pontuação máxima do usuário
- *     description: Retorna a pontuação máxima do usuário em cada jogo.
+ *     summary: Retorna perguntas do quiz
+ *     tags: [Quiz]
+ *     responses:
+ *       200:
+ *         description: Perguntas retornadas com sucesso
+ *       500:
+ *         description: Erro ao buscar perguntas
+ */
+
+
+router.post('/get/quiz', getQuizData);
+
+/**
+ * @swagger
+ * /calculateScore:
+ *   post:
+ *     summary: Calcula a pontuação do usuário
+ *     tags: [Quiz]
  *     requestBody:
  *       required: true
  *       content:
@@ -131,26 +157,46 @@ router.post('/save_highscore', saveHighScore);
  *               id_usuario:
  *                 type: integer
  *                 example: 1
+ *               perguntas:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *                   example: 101
  *     responses:
  *       200:
- *         description: Pontuações carregadas com sucesso.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   jogo:
- *                     type: string
- *                     example: "Pacman"
- *                   pontuacao:
- *                     type: integer
- *                     example: 1500
+ *         description: Pontuação calculada com sucesso
+ *       500:
+ *         description: Erro ao calcular pontuação
  */
 
-router.post('/quiz', quiz);
 
-router.get("/getPerguntras", getPerguntras);
+router.post('/calculateScore', calculateScore);
 
+/**
+ * @swagger
+ * /updateHighScore:
+ *   post:
+ *     summary: Atualiza o highscore do usuário
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id_usuario:
+ *                 type: integer
+ *                 example: 1
+ *               pontuacao:
+ *                 type: integer
+ *                 example: 1500
+ *     responses:
+ *       200:
+ *         description: Highscore atualizado com sucesso
+ *       500:
+ *         description: Erro ao atualizar highscore
+ */
+
+router.post('/updateHighScore', updateHighScore);
 module.exports = router;
