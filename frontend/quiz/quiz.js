@@ -1,15 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    //busca as perguntas no servidor    
     async function fetchQuestions() {
         try {
             console.log("Tentando acessar /backend/get/quiz");
+
+            // Envia uma requisição ao servidor para obter as perguntas
             const response = await fetch(`http://localhost:3006/backend/get/quiz`, {
-                method: 'POST',
+                method: 'POST', // Método HTTP utilizado para enviar os dados
                 headers: { 'Content-Type': 'application/json' },
             });
 
             if (response.ok) {
+                // Caso a resposta do servidor seja bem-sucedida, processa os dados
                 const result = await response.json();
                 if (result.success) {
+                    
+                    // Renderiza as perguntas na interface
                     renderQuiz(result.data);
                 } else {
                     console.warn("Nenhuma pergunta encontrada:", result.message);
@@ -25,19 +32,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    //busca a maior score do usuario
     async function fetchHighScore() {
         try {
             console.log("Buscando pontuação máxima");
+            
+            // Envia uma requisição para obter a pontuação máxima
             const response = await fetch('http://localhost:3006/backend/getHighScore', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_usuario: 1 }) // Substituir por lógica dinâmica para pegar o ID do usuário logado
+                body: JSON.stringify({ id_usuario: 1 }) // Substituir para pegar o ID do usuário logado
             });
 
             if (response.ok) {
                 const result = await response.json();
                 if (result.success) {
                     console.log("Pontuação máxima recebida:", result.highScore);
+
                     document.getElementById('pontos').innerText = result.highScore; // Atualiza o elemento de pontuação máxima
                 } else {
                     console.warn("Erro ao buscar pontuação máxima:", result.message);
@@ -59,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Renderizando perguntas:", questions);
         const container = document.getElementById('opcao-section');
 
+        // Verifica se o elemento de destino existe
         if (!container) {
             console.error('Elemento com id="opcao-section" não encontrado!');
             return;
@@ -66,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let html = '';
 
+        //p cada questao ele vai criar uma div que contem a pergunta, assim aparecendo na tela
         questions.forEach(question => {
             html += `
                 <div class="questoes-box">
@@ -81,25 +94,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             html += `</div>`;
         });
-
+    
+        //colocando para aparecer na tela e adiciona o botão de envio no final
         html += `<button class="submit-button" onclick="submitQuiz()">Enviar</button>`;
         container.innerHTML = html;
         console.log("Perguntas renderizadas no DOM.");
     }
 
-    // Torne a função submitQuiz acessível globalmente
+    // Torna a função `submitQuiz` acessível globalmente para poder usar no botão
     window.submitQuiz = async function submitQuiz() {
+
+        // Coleta as respostas selecionadas pelo usuário
         const answeredQuestions = Array.from(document.querySelectorAll('.questoes-box'))
             .map(box => {
                 const selectedInput = box.querySelector('input[type="radio"]:checked');
                 if (!selectedInput) return null;
                 return {
-                    id_pergunta: parseInt(selectedInput.name.replace('question', '')),
-                    id_resposta: parseInt(selectedInput.value)
+                    id_pergunta: parseInt(selectedInput.name.replace('question', '')), // Extrai o ID da pergunta
+                    id_resposta: parseInt(selectedInput.value) // Obtém o ID da resposta selecionada
                 };
             })
-            .filter(Boolean);
+            .filter(Boolean); // Remove respostas nulas
     
+        // Valida se pelo menos uma pergunta foi respondida
         if (answeredQuestions.length === 0) {
             alert("Por favor, responda pelo menos uma pergunta!");
             return;
@@ -111,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 respostas: answeredQuestions
             });
     
+            // Envia as respostas do usuário para o servidor calcular a pontuação
             const response = await fetch('http://localhost:3006/backend/calculateScore', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -136,7 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Erro ao calcular pontuação:", error);
         }
     };
-    // Inicializar o quiz
+
+    // Inicializa o quiz
     console.log("Iniciando fetchQuestions");
     fetchQuestions();
 });

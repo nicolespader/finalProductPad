@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const apiUrl = 'http://localhost:3006/backend/getUserData';
 
     async function getUserData() {
-        const userId = localStorage.getItem('id'); // Ajustado para 'id', conforme o localStorage mostrado
+        const userId = localStorage.getItem('id'); // pegando o id que foi armazenado no localstorage
         console.log("Verificando localStorage. ID:", userId);
 
+        //se nao tiver logado:
         if (!userId) {
             console.error("Usuário não está logado. Redirecionando para login.");
             window.location.href = "../cadastro_login/login.html";
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    //atualiza o perfil com os novos dados
     function updateProfile(nome, email, highScore) {
         console.log("Atualizando perfil com dados:", { nome, email, highScore });
         document.querySelector('.profile-name').innerText = nome || "Usuário";
